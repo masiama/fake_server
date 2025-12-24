@@ -34,7 +34,7 @@ defmodule ResponseTest do
     end
 
     test "returns {:error, {body, reason}} if body is not a map or string" do
-      assert {:error, {'hello', "body must be a map or a string"}} == Response.new(200, 'hello')
+      assert {:error, {"hello", "body must be a map or a string"}} == Response.new(200, "hello")
 
       assert {:error, {1_234_567, "body must be a map or a string"}} ==
                Response.new(200, 1_234_567)
@@ -96,7 +96,7 @@ defmodule ResponseTest do
 
     test "returns {:error, {body, reason}} if body is not a map or string" do
       assert_raise FakeServer.Error, ~s<'hello': "body must be a map or a string">, fn ->
-        Response.new!(200, 'hello')
+        Response.new!(200, "hello")
       end
 
       assert_raise FakeServer.Error, ~s<1234567: "body must be a map or a string">, fn ->

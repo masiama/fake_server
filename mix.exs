@@ -5,7 +5,7 @@ defmodule FakeServer.Mixfile do
     [
       app: :fake_server,
       version: "2.1.0",
-      elixir: "~> 1.4",
+      elixir: "~> 1.7",
       description: description(),
       package: package(),
       aliases: aliases(),
@@ -30,7 +30,7 @@ defmodule FakeServer.Mixfile do
       {:poison, ">= 1.0.0"},
       {:faker, "~> 0.9", only: :test},
       {:ex_doc, "~> 0.19", only: :dev},
-      {:httpoison, "~> 0.13", only: :test},
+      {:httpoison, "~> 2.3", only: :test},
       {:excoveralls, "~> 0.7", only: :test}
     ]
   end

@@ -7,12 +7,12 @@ defmodule FakeServer.RouteTest do
   describe "#create" do
     test "returns {:error, reason} if path is not a string" do
       assert {:error, {1, "path must be a string"}} == Route.create(path: 1)
-      assert {:error, {'/', "path must be a string"}} == Route.create(path: '/')
+      assert {:error, {"/", "path must be a string"}} == Route.create(path: "/")
       assert {:error, {nil, "path must be a string"}} == Route.create(path: nil)
       assert {:error, {[], "path must be a string"}} == Route.create(path: [])
 
-      assert {:error, {['/', 'test'], "path must be a string"}} ==
-               Route.create(path: ['/', 'test'])
+      assert {:error, {["/", "test"], "path must be a string"}} ==
+               Route.create(path: ["/", "test"])
 
       assert {:error, {%{}, "path must be a string"}} == Route.create(path: %{})
     end
@@ -54,10 +54,10 @@ defmodule FakeServer.RouteTest do
   describe "#create!" do
     test "raises FakeSever.Error if path is not a string" do
       assert_raise FakeServer.Error, fn -> Route.create!(path: 1) end
-      assert_raise FakeServer.Error, fn -> Route.create!(path: '/') end
+      assert_raise FakeServer.Error, fn -> Route.create!(path: "/") end
       assert_raise FakeServer.Error, fn -> Route.create!(path: nil) end
       assert_raise FakeServer.Error, fn -> Route.create!(path: []) end
-      assert_raise FakeServer.Error, fn -> Route.create!(path: ['/', 'test']) end
+      assert_raise FakeServer.Error, fn -> Route.create!(path: ["/", "test"]) end
       assert_raise FakeServer.Error, fn -> Route.create!(path: %{}) end
     end
 
@@ -121,10 +121,10 @@ defmodule FakeServer.RouteTest do
   describe "#valid?" do
     test "returns false if path is not a string" do
       assert false == Route.valid?(%Route{path: 1})
-      assert false == Route.valid?(%Route{path: '/'})
+      assert false == Route.valid?(%Route{path: "/"})
       assert false == Route.valid?(%Route{path: nil})
       assert false == Route.valid?(%Route{path: []})
-      assert false == Route.valid?(%Route{path: ['/', 'test']})
+      assert false == Route.valid?(%Route{path: ["/", "test"]})
       assert false == Route.valid?(%Route{path: %{}})
     end
 
